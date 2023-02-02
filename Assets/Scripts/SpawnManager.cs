@@ -6,8 +6,6 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] _animalPrefab;
 
-    [SerializeField] private KeyCode _key;
-
     private Vector3 _spawnPoint;
     
     private int _animalIndex;
