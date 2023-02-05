@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DetectCollisions : MonoBehaviour
 {
     private GameController _player;
+
+    private float _hungerLevel = 0f;
+    private float _maxHungerLevel = 90.0f;
+
+    [SerializeField] private Image _scale;
 
     private void Start()
     {
@@ -20,9 +26,15 @@ public class DetectCollisions : MonoBehaviour
         }
         else if (other.CompareTag("Animal"))
         {
-            _player.SetScore(5);
-            Destroy(gameObject);
             Destroy(other.gameObject);
+            _hungerLevel += 30.0f;
+            _scale.fillAmount = _hungerLevel / _maxHungerLevel;
+
+            if (_hungerLevel == _maxHungerLevel)
+            {
+                _player.SetScore(1);
+                Destroy(gameObject);
+            }
         }
     }
 }

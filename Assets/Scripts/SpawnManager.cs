@@ -19,7 +19,7 @@ public class SpawnManager : MonoBehaviour
     private float _agrSpawnRangeZ = 30.0f;
 
     private float _startDelay = 2.0f;
-    private float _spawnInterval = 1.5f;
+    private float _spawnInterval = 3.0f;
 
     private void Start()
     {
@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnRightAnimals()
     {
-        _animalIndex = Random.Range(1, _animalPrefab.Length);
+        _animalIndex = Random.Range(0, _animalPrefab.Length);
 
         _rotation = new Vector3(0, -90, 0);
 
@@ -50,7 +50,7 @@ public class SpawnManager : MonoBehaviour
     
     private void SpawnLeftAnimals()
     {
-        _animalIndex = Random.Range(1, _animalPrefab.Length);
+        _animalIndex = Random.Range(0, _animalPrefab.Length);
 
         _rotation = new Vector3(0, 90, 0);
 

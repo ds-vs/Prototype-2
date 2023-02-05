@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -9,6 +10,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private KeyCode _key;
 
     [SerializeField] private float _speed = 25.0f;
+
+    [SerializeField] private float _cooldown = 0.5f;
+    private float m_lastTime;
 
     private int _projectileIndex;
 
@@ -39,6 +43,18 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, _zRangeDown);
         }
     }
+    private void SpawnRandomFood()
+    {
+        _projectileIndex = Random.Range(0, _projectilePrefab.Length);
+
+        if (!(m_lastTime + _cooldown < Time.time)) 
+            return;
+
+        m_lastTime = Time.time;
+
+        Instantiate(_projectilePrefab[_projectileIndex], transform.position,
+            _projectilePrefab[_projectileIndex].transform.rotation);
+    }
 
     private void Update()
     {
@@ -53,11 +69,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(_key))
         {
-            _projectileIndex = Random.Range(0, _projectilePrefab.Length);
+            SpawnRandomFood();
+        }
 
-            // Создаю копии объектов
-            Instantiate(_projectilePrefab[_projectileIndex], transform.position,
-                _projectilePrefab[_projectileIndex].transform.rotation);
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
