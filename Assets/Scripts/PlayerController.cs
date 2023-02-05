@@ -12,18 +12,31 @@ public class PlayerController : MonoBehaviour
 
     private int _projectileIndex;
 
-    private float xRange = 15.0f;
-    private float _horizontalInput;
+    private float _xRange = 15.0f;
+    private float _zRangeUp = 13.5f;
+    private float _zRangeDown = -1.0f;
 
-    public void CheckPlayerPostiton()
+    private float _horizontalInput;
+    private float _verticalInput;
+
+    private void CheckPlayerPostiton()
     {
-        if (transform.position.x < -xRange)
+        if (transform.position.x < -_xRange)
         {
-            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-_xRange, transform.position.y, transform.position.z);
         }
-        if (transform.position.x > xRange)
+        if (transform.position.x > _xRange)
         {
-            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+            transform.position = new Vector3(_xRange, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.z > _zRangeUp)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, _zRangeUp);
+        }
+        if (transform.position.z < _zRangeDown)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, _zRangeDown);
         }
     }
 
@@ -32,8 +45,11 @@ public class PlayerController : MonoBehaviour
         CheckPlayerPostiton();
 
         _horizontalInput = Input.GetAxis("Horizontal");
+        _verticalInput = Input.GetAxis("Vertical");
 
         transform.Translate(Vector3.right * _speed * _horizontalInput * Time.deltaTime);
+
+        transform.Translate(Vector3.forward * _speed * _verticalInput * Time.deltaTime);
 
         if (Input.GetKeyDown(_key))
         {

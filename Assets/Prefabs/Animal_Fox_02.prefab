@@ -1036,7 +1036,7 @@ GameObject:
   - component: {fileID: -7741063045999489632}
   m_Layer: 0
   m_Name: Animal_Fox_02
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1070,7 +1070,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &7693865139205906308
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1087,7 +1087,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 0
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &9066553335009867831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1138,3 +1138,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39a33cc742d9d24c8016fb8d8f04afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 5
